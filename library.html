@@ -1,0 +1,8 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Library</title><link rel="stylesheet" href="/static/style.css"></head>
+<body class="library-body"><header class="top"><a class="brand" href="/">Library<span>.</span></a><a href="/" class="back">← MathLab</a></header>
+<main class="wrap library-wrap"><section class="library-hero"><div class="eyebrow">PERSONAL MEDIA LIBRARY</div><h1>Anime <em>library.</em></h1><p>Browse the supplied video-link catalog, play compatible direct links, or download an episode.</p><div class="stat"><strong id="total">{{ catalog_count }}</strong><span>catalog links</span></div></section>
+<div class="library-controls"><input id="search" placeholder="Search anime or episode…" autocomplete="off"><select id="series"><option value="">All series</option>{% for s in series %}<option>{{s}}</option>{% endfor %}<option>Other</option></select></div>
+<div class="player panel"><div class="player-head"><div><small>NOW PLAYING</small><h2 id="now-title">Choose an episode</h2></div><span class="muted" id="now-series">Nothing selected</span></div><video id="player" controls playsinline preload="metadata"></video><p class="muted player-note">Playback depends on the source host allowing direct video access in your browser.</p></div>
+<div id="series-groups" class="series-groups"><div class="empty">Loading library…</div></div>
+</main><script src="/static/library.js"></script></body></html>

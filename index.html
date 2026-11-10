@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MathLab</title><link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="top"><a class="brand" href="/">MathLab<span>.</span></a><nav><a href="#tools">Math tools</a><a href="#credits">Credits</a></nav></header>
+<main class="wrap">
+<section class="hero"><div class="eyebrow">LEARN · PRACTICE · SOLVE</div><h1>Math, made<br><em>understandable.</em></h1><p>A clean workspace for calculations, algebra, and everyday math.</p></section>
+<section id="tools" class="tool-grid">
+<article class="panel calculator"><div class="panel-head"><div><small>QUICK TOOL</small><h2>Calculator</h2></div><span class="symbol">÷</span></div>
+<input id="display" class="display" value="0" aria-label="Calculator display" readonly>
+<div class="keys">
+<button class="key soft" data-action="clear">AC</button><button class="key soft" data-value="(">(</button><button class="key soft" data-value=")">)</button><button class="key operator" data-value="÷">÷</button>
+<button class="key" data-value="7">7</button><button class="key" data-value="8">8</button><button class="key" data-value="9">9</button><button class="key operator" data-value="×">×</button>
+<button class="key" data-value="4">4</button><button class="key" data-value="5">5</button><button class="key" data-value="6">6</button><button class="key operator" data-value="−">−</button>
+<button class="key" data-value="1">1</button><button class="key" data-value="2">2</button><button class="key" data-value="3">3</button><button class="key operator" data-value="+">+</button>
+<button class="key wide" data-value="0">0</button><button class="key" data-value=".">.</button><button class="key equals" data-action="equals">=</button>
+</div></article>
+<article class="panel solver"><div class="panel-head"><div><small>STEP 01</small><h2>Linear equation solver</h2></div><span class="symbol">x</span></div>
+<p class="muted">Solve equations in the form <code>ax + b = c</code>.</p>
+<div class="equation-inputs"><label>a<input id="a" type="number" value="2"></label><label>b<input id="b" type="number" value="4"></label><label>c<input id="c" type="number" value="10"></label></div>
+<button id="solve" class="primary">Solve for x <span>→</span></button><div id="solution" class="result">Your solution will appear here.</div></article>
+<article class="panel reference"><div class="panel-head"><div><small>QUICK REFERENCE</small><h2>Useful formulas</h2></div><span class="symbol">π</span></div>
+<div class="formula"><span>Area of a circle</span><strong>A = πr²</strong></div><div class="formula"><span>Pythagorean theorem</span><strong>a² + b² = c²</strong></div><div class="formula"><span>Quadratic formula</span><strong>x = (−b ± √(b²−4ac)) / 2a</strong></div></article>
+</section>
+<section id="credits" class="credits"><div><small>THE PEOPLE BEHIND IT</small><h2>Credits & About Us</h2><p>MathLab is a simple learning project designed to make math tools easy to use.</p></div>
+<div class="about"><h3>About Us</h3><p>Built for curious minds, problem solvers, and lifelong learners.</p><div class="unlock"><label for="about-entry">About Us</label><input id="about-entry" type="password" autocomplete="off" placeholder="Enter access code"><button id="about-submit" aria-label="Submit">↗</button></div><div id="about-message" role="status"></div></div></section>
+<footer>© 2026 MathLab · Keep asking why.</footer>
+</main>
+<script src="/static/main.js"></script>
+</body></html>

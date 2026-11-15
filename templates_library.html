@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Your library | MathLab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='site.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='library.js') }}" defer></script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="{{ url_for('home') }}">MathLab<span>.</span></a>
+    <nav aria-label="Library navigation"><a href="{{ url_for('home') }}">Home</a><span class="muted">{{ current_user.username }}</span><button type="button" id="logout">Sign out</button></nav>
+  </header>
+  <main class="wrap">
+    <p id="site-message" class="status" role="status"></p>
+    <section class="library-hero">
+      <div class="eyebrow">YOUR PERSONAL COLLECTION</div>
+      <h1>Pick up where<br><em>you left off.</em></h1>
+      <p class="muted"><span id="total">{{ catalog_count }}</span> links. Favorites and progress are saved to your account.</p>
+    </section>
+    <section class="panel player-panel" aria-labelledby="now-title">
+      <h2 id="now-title">Choose an episode</h2>
+      <div class="player-actions"><span class="muted" id="now-series">Nothing selected</span><button id="favorite-current" type="button" disabled>Favorite</button></div>
+      <video id="player" controls playsinline preload="metadata" aria-label="Episode player"></video>
+      <p class="muted player-note">Playback depends on the source host allowing direct video access in your browser. Favorites and playback progress are saved to your account.</p>
+      <div id="resume-note" class="muted" role="status"></div>
+    </section>
+    <section class="catalog" aria-labelledby="catalog-title">
+      <h2 id="catalog-title">Browse your collection</h2>
+      <div class="catalog-filters">
+        <div><label for="search">Search episodes</label><input id="search" type="search" placeholder="Search by title or series"></div>
+        <div><label for="series">Series</label><select id="series"><option value="">All series</option>{% for name in series %}<option value="{{ name }}">{{ name }}</option>{% endfor %}</select></div>
+      </div>
+      {% if not catalog_count %}
+      <p class="empty">No videos are configured yet. The site owner needs to add authorized Archive.org video URLs to the catalog and restart the app.</p>
+      {% endif %}
+      <div id="series-groups" aria-live="polite">Loading collection...</div>
+    </section>
+  </main>
+  <footer class="wrap muted">Only access or download content you have permission to use.</footer>
+{% include 'templates_popup.html' %}
+</body>
+</html>

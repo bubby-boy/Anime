@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OVERLORD Control</title><link rel="stylesheet" href="/static/style.css"></head>
+<body class="admin-body"><header class="top"><a class="brand" href="/">OVERLORD<span>.</span></a><a class="back" href="/">← MathLab</a></header>
+<main class="wrap admin-wrap"><section class="library-hero"><div class="eyebrow">OWNER CONSOLE · AUTHORIZED ACCESS</div><h1>Control <em>center.</em></h1><p>Account management, live activity, session controls, and audit history.</p></section>
+<section class="admin-stats" id="stats"><div class="stat-card"><small>USERS</small><strong id="s-users">—</strong></div><div class="stat-card"><small>ONLINE SESSIONS</small><strong id="s-online">—</strong></div><div class="stat-card"><small>ACTIVITY EVENTS</small><strong id="s-events">—</strong></div><div class="stat-card"><small>COMPLETED EPISODES</small><strong id="s-completed">—</strong></div></section>
+<div class="admin-toolbar"><h2>Users & controls</h2><button id="refresh" class="primary">Refresh data ↻</button><a class="export" href="/api/admin/export">Export audit CSV ↓</a></div>
+<div class="table-wrap"><table><thead><tr><th>USER</th><th>ROLE / STATUS</th><th>LAST SEEN</th><th>FAVORITES</th><th>PROGRESS</th><th>ACTIONS</th></tr></thead><tbody id="users"><tr><td colspan="6">Loading…</td></tr></tbody></table></div>
+<section class="admin-section panel" aria-labelledby="popup-controls-title">
+<h2 id="popup-controls-title">User popups and playback controls</h2>
+<p class="muted">Send a plain-text message to one user. It appears on their signed-in site pages, usually within 2 seconds. Offline users receive it on their next visit until released. One active popup per user.</p>
+<form id="admin-popup-form">
+<label for="popup-user">Recipient</label><select id="popup-user" required><option value="">Select a user</option></select>
+<label for="popup-title">Title</label><input id="popup-title" maxlength="120" required>
+<label for="popup-message">Message</label><textarea id="popup-message" maxlength="2000" rows="4" required></textarea>
+<label for="popup-mode">Playback behavior</label>
+<select id="popup-mode"><option value="once">Pause once; user can resume</option><option value="dismiss">Pause until user dismisses the popup</option><option value="admin">Pause until I release it</option></select>
+<button id="popup-send" class="primary" type="submit">Send popup</button>
+</form>
+<p id="popup-admin-status" role="status"></p>
+<h3>Recent messages and responses</h3>
+<div id="popup-history" aria-live="polite">Select a user to view messages.</div>
+</section>
+<div class="admin-section"><h2>Live activity <span class="live-dot"></span></h2><p class="muted">Refreshes automatically every 5 seconds. IP addresses are recorded for security auditing.</p><div id="activity" class="activity-list"></div></div>
+<div class="admin-section"><h2>Recent sessions</h2><div class="table-wrap"><table><thead><tr><th>USER</th><th>IP ADDRESS</th><th>DEVICE</th><th>LAST SEEN</th><th>STATUS</th></tr></thead><tbody id="sessions"></tbody></table></div></div>
+</main><script src="/static/admin.js"></script>{% include 'templates_popup.html' %}</body></html>

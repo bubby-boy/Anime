@@ -1,0 +1,18 @@
+{% if current_user %}
+<p id="screen-connection" class="screen-connection" role="status" hidden></p>
+<dialog id="screen-popup" class="screen-popup" aria-labelledby="screen-title" aria-describedby="screen-message">
+  <div class="eyebrow">MESSAGE FROM THE SITE ADMINISTRATOR</div>
+  <h2 id="screen-title"></h2>
+  <p id="screen-message" class="screen-text"></p>
+  <p id="screen-pause-note" class="muted"></p>
+  <form id="screen-reply-form">
+    <label for="screen-reply">Your response (visible to the site administrators)</label>
+    <textarea id="screen-reply" maxlength="2000" rows="3" required></textarea>
+    <button id="screen-send-reply" type="submit" class="primary">Send response</button>
+  </form>
+  <p id="screen-reply-status" role="status"></p>
+  <p id="screen-error" class="status" role="alert"></p>
+  <button id="screen-dismiss" type="button">Dismiss message</button>
+</dialog>
+<script src="{{ url_for('static', filename='popup.js') }}" defer></script>
+{% endif %}

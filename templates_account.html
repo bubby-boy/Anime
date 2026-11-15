@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Account · MathLab</title><link rel="stylesheet" href="/static/style.css"></head>
+<body><header class="top"><a class="brand" href="/">MathLab<span>.</span></a><a class="back" href="/">← Home</a></header>
+<main class="wrap account-wrap"><section class="panel account-panel"><div class="eyebrow">YOUR PERSONAL SPACE</div><h1>Welcome <em>back.</em></h1><p class="muted">Sign in to sync favorites and episode progress across visits, or create a new account.</p>
+<div class="account-tabs"><button class="tab active" data-mode="login">Sign in</button><button class="tab" data-mode="register">Create account</button></div>
+<label>Username<input id="username" autocomplete="username" maxlength="24" placeholder="Your username"></label>
+<label>Password<input id="password" type="password" autocomplete="current-password" placeholder="At least 10 characters"></label>
+<button id="submit-account" class="primary">Sign in →</button><div id="account-message" role="status"></div></section></main>
+<script>let mode='login';const nextPath={{ next_path|tojson }};document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{mode=b.dataset.mode;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));document.getElementById('submit-account').textContent=mode==='login'?'Sign in →':'Create account →';document.getElementById('password').autocomplete=mode==='login'?'current-password':'new-password';document.getElementById('account-message').textContent='';});
+document.getElementById('submit-account').onclick=async()=>{const msg=document.getElementById('account-message');msg.textContent='';const r=await fetch('/api/'+(mode==='login'?'login':'register'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:document.getElementById('username').value,password:document.getElementById('password').value})});const d=await r.json();if(!r.ok){msg.textContent=d.error||'Could not continue.';return;}location.assign(nextPath||'/');};
+</script></body></html>

@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MathLab | Everyday math, made clear</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='site.js') }}" defer></script>
+  <script src="{{ url_for('static', filename='home.js') }}" defer></script>
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="{{ url_for('home') }}">MathLab<span>.</span></a>
+    <nav aria-label="Main navigation">
+      <a href="#tools">Math tools</a><a href="#credits">Credits</a>
+      {% if current_user %}
+      <span class="muted">{{ current_user.username }}</span>
+      <button type="button" id="logout">Sign out</button>
+      {% else %}
+      <a href="{{ url_for('account') }}">Account</a>
+      {% endif %}
+    </nav>
+  </header>
+  <main class="wrap">
+    <p id="site-message" class="status" role="status"></p>
+    <section class="hero">
+      <div class="eyebrow">A LITTLE CLARITY GOES A LONG WAY</div>
+      <h1>Big ideas.<br><em>Simple math.</em></h1>
+      <p class="intro">A focused space to calculate, solve, and keep moving. No clutter. Just the answer you need.</p>
+      <a class="primary inline-button" href="#tools">Explore the tools</a>
+    </section>
+    <section id="tools" aria-labelledby="tools-title">
+      <div class="section-heading"><h2 id="tools-title">Your everyday toolkit</h2><span class="muted">02 TOOLS</span></div>
+      <div class="tool-grid">
+        <section class="panel">
+          <div class="eyebrow">01 / CALCULATE</div>
+          <h3>Quick calculator</h3>
+          <p class="muted">Choose an operation and enter two numbers.</p>
+          <form id="calculator">
+            <label for="number-a">First number</label>
+            <input id="number-a" type="number" step="any" value="12" required>
+            <label for="operation">Operation</label>
+            <select id="operation">
+              <option value="add">Add (+)</option><option value="subtract">Subtract (-)</option>
+              <option value="multiply">Multiply (&times;)</option><option value="divide">Divide (&divide;)</option>
+              <option value="power">Power (a raised to b)</option>
+            </select>
+            <label for="number-b">Second number</label>
+            <input id="number-b" type="number" step="any" value="8" required>
+            <button class="primary" type="submit">Calculate</button>
+            <output id="calculator-result" class="result" aria-live="polite">Your result will appear here.</output>
+          </form>
+        </section>
+        <section class="panel">
+          <div class="eyebrow">02 / SOLVE</div>
+          <h3>Find the unknown</h3>
+          <p class="muted">Solve a linear equation of the form <strong>ax + b = c</strong>.</p>
+          <form id="linear-solver">
+            <label for="coefficient-a">a &mdash; coefficient of x</label>
+            <input id="coefficient-a" type="number" step="any" value="2" required>
+            <label for="coefficient-b">b &mdash; added constant</label>
+            <input id="coefficient-b" type="number" step="any" value="4" required>
+            <label for="coefficient-c">c &mdash; right-hand side</label>
+            <input id="coefficient-c" type="number" step="any" value="10" required>
+            <button class="primary" type="submit">Solve for x</button>
+            <output id="solver-result" class="result" aria-live="polite">Your solution will appear here.</output>
+          </form>
+        </section>
+      </div>
+      <p class="muted fine-print">Results use standard floating-point arithmetic and may be rounded.</p>
+    </section>
+    <section id="credits" class="credits panel">
+      <div class="eyebrow">MADE FOR CURIOUS MINDS</div>
+      <h2>A place to work things out.</h2>
+      <p class="muted">MathLab brings useful tools together in one quiet corner of the web.</p>
+      <details>
+        <summary>About Us</summary>
+        <p>Built for learning, exploration, and a little discovery.</p>
+        {% if current_user %}
+        <form id="unlock-form">
+          <label for="unlock-password">Access phrase</label>
+          <input id="unlock-password" type="password" autocomplete="off" required>
+          <button class="primary" type="submit">Continue</button>
+          <p id="unlock-message" class="status" role="status"></p>
+        </form>
+        {% else %}
+        <p><a href="{{ url_for('account', next=url_for('home') + '#credits') }}">Sign in to continue</a></p>
+        {% endif %}
+      </details>
+    </section>
+  </main>
+  <footer class="wrap muted">MathLab &middot; A little less friction. A little more focus.</footer>
+{% include 'templates_popup.html' %}
+</body>
+</html>
